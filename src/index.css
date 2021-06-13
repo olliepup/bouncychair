@@ -15,5 +15,9 @@ input[type="text"] {
 }
 
 label {
-  @apply text-gray-700;
+  @apply text-gray-700 font-bold;
+}
+
+h1 {
+  @apply font-bold;
 }

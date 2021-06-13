@@ -4,12 +4,15 @@ import { avatarModule, AvatarState } from "./modules/avatar/avatarModule";
 import { globalModule, GlobalOptions } from "./modules/global/globalModule";
 import { buildCss } from "./modules/preview/buildCss";
 import { buildPreviewHtml } from "./modules/preview/buildHtml";
-import { previewModule, PreviewState } from "./modules/preview/previewModule";
+import { uiModule, UiState } from "./modules/ui/previewModule";
+
+const STATE_VERSION = 1;
 
 export type AppState = {
+  version: 1;
   global: GlobalOptions;
   avatar: AvatarState;
-  preview: PreviewState;
+  ui: UiState;
 };
 
 export const storeKey: InjectionKey<Store<AppState>> = Symbol();
@@ -19,7 +22,7 @@ export const store = createStore<AppState>({
   modules: {
     global: globalModule,
     avatar: avatarModule,
-    preview: previewModule,
+    ui: uiModule,
   },
   getters: {
     allAvatars: (state) => {

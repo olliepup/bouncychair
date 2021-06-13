@@ -11,7 +11,7 @@
           type="text"
           placeholder="123456789012345678"
           :value="avatar.discordId"
-          @change.prevent="updateAvatar({ discordId: $event.target.value })"
+          @change.prevent="updateDiscordId($event)"
         />
       </label>
 
@@ -21,7 +21,7 @@
           type="text"
           placeholder="http://www.example.com/idle.png"
           :value="avatar.idleImageUrl"
-          @change.prevent="updateAvatar({ idleImageUrl: $event.target.value })"
+          @change.prevent="updateIdleImageUrl($event)"
         />
       </label>
 
@@ -31,9 +31,7 @@
           type="text"
           placeholder="http://www.example.com/speaking.png"
           :value="avatar.speakingImageUrl"
-          @change.prevent="
-            updateAvatar({ speakingImageUrl: $event.target.value })
-          "
+          @change.prevent="updateSpeakingImageUrl($event)"
         />
       </label>
 
@@ -43,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from "vue";
+import { computed, defineComponent, toRefs } from "vue";
 import { useStore } from "../../store";
 import { Avatar } from "./avatarModule";
 
@@ -56,7 +54,7 @@ export default defineComponent({
     const { id } = toRefs(props);
     const { commit, state } = useStore();
 
-    const avatar = state.avatar.avatarsById[id.value];
+    const avatar = computed(() => state.avatar.avatarsById[id.value]);
 
     const updateAvatar = (changes: Partial<Avatar>) =>
       commit("updateAvatar", {
@@ -64,11 +62,28 @@ export default defineComponent({
         changes,
       });
 
+    const updateDiscordId = (event: Event) =>
+      updateAvatar({
+        discordId: (<HTMLInputElement>event.target).value,
+      });
+
+    const updateIdleImageUrl = (event: Event) =>
+      updateAvatar({
+        idleImageUrl: (<HTMLInputElement>event.target).value,
+      });
+
+    const updateSpeakingImageUrl = (event: Event) =>
+      updateAvatar({
+        speakingImageUrl: (<HTMLInputElement>event.target).value,
+      });
+
     const removeAvatar = () => commit("removeAvatar", id.value);
 
     return {
       avatar,
-      updateAvatar,
+      updateDiscordId,
+      updateIdleImageUrl,
+      updateSpeakingImageUrl,
       removeAvatar,
     };
   },

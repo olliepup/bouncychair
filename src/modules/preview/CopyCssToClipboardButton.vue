@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="copyToClipboard">Copy to Clipboard</button>
+  <button @click.prevent="copyCssToClipboard">Copy to Clipboard</button>
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import { computed, defineComponent } from "vue";
 import { useStore } from "../../store";
 
 export default defineComponent({
-  name: "CopyCssToClipboard",
+  name: "CopyCssToClipboardButton",
   setup: () => {
     const { getters } = useStore();
 

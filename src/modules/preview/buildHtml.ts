@@ -83,7 +83,7 @@ export function buildPreviewHtml(
     <div class="previewTextContainer">
       <div class="previewText">
         <h1>Preview</h1>
-        <h4>Tip: Hover over avatars to simulate speaking!</h4>
+        <h4>Tip: Mouse over avatars to simulate speaking!</h4>
       
       </div>
     </div>

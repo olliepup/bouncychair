@@ -10,17 +10,19 @@ export type GlobalOptions = {
   avatarSeparation: string;
 };
 
+export const getInitialState = () => ({
+  avatarWidth: "250px",
+  // TODO add warning if overscan and bounce are not equal
+  avatarOverscan: "10px",
+  avatarBounce: "10px",
+  avatarEnthusiasm: "1s",
+  avatarIdleBrightness: "75%",
+  avatarSeparation: "0",
+});
+
 export const globalModule: Module<GlobalOptions, any> = {
   state: () => {
-    return {
-      avatarWidth: "250px",
-      // TODO add warning if overscan and bounce are not equal
-      avatarOverscan: "10px",
-      avatarBounce: "10px",
-      avatarEnthusiasm: "1s",
-      avatarIdleBrightness: "75%",
-      avatarSeparation: "0",
-    };
+    return getInitialState();
   },
   mutations: {
     setAvatarWidth(state, width: string) {
@@ -45,6 +47,10 @@ export const globalModule: Module<GlobalOptions, any> = {
 
     setAvatarSeparation(state, separation: string) {
       state.avatarSeparation = separation;
+    },
+
+    resetGlobalSettings(state) {
+      Object.assign(state, getInitialState());
     },
   },
 };

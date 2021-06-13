@@ -1,28 +1,37 @@
 <template>
   <header>
-    <h1 class="text-xl">Bouncy Chair</h1>
+    <img class="w-96 mx-auto" src="/logo.png" />
   </header>
 
-  <main class="mx-auto w-min">
+  <main class="mx-auto w-min space-y-4 py-4">
     <div class="mx-auto w-min h-min">
       <Preview />
     </div>
 
-    <div class="mx-auto w-min h-min">
-      <!-- <ExportCss /> -->
+    <div class="mx-auto flex content-center w-max space-x-1 my-4">
+      <ToggleCssButton />
+
+      <CopyCssToClipboardButton />
+
+      <ToggleGlobalSettingsButton />
     </div>
+
+    <GlobalSettings v-show="showGlobalSettings" />
 
     <Avatars />
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Avatars from "./modules/avatar/Avatars.vue";
-import Avatar from "./modules/avatar/Avatar.vue";
+import GlobalSettings from "./modules/global/GlobalSettings.vue";
+import CopyCssToClipboardButton from "./modules/preview/CopyCssToClipboardButton.vue";
 import Preview from "./modules/preview/Preview.vue";
-import ExportCss from "./modules/preview/CopyCssToClipboard.vue";
+import ToggleCssButton from "./modules/ui/ToggleCssButton.vue";
+import ToggleGlobalSettingsButton from "./modules/ui/ToggleGlobalSettingsButton.vue";
+import { useStore } from "./store";
 
 export default defineComponent({
   name: "App",
@@ -30,8 +39,20 @@ export default defineComponent({
     HelloWorld,
     Avatars,
     Preview,
-    ExportCss,
+    CopyCssToClipboardButton,
+    ToggleCssButton,
+    ToggleGlobalSettingsButton,
+    GlobalSettings,
     // Avatar,
+  },
+  setup() {
+    const { state } = useStore();
+
+    const showGlobalSettings = computed(() => state.ui.showGlobalSettings);
+
+    return {
+      showGlobalSettings,
+    };
   },
 });
 </script>
