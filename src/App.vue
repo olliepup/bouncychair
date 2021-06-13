@@ -47,6 +47,11 @@ export default defineComponent({
     GlobalSettings,
     // Avatar,
   },
+  beforeCreate() {
+    const { commit } = useStore();
+
+    commit("hydrateState");
+  },
   setup() {
     const { state } = useStore();
 

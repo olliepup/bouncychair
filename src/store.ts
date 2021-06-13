@@ -6,10 +6,12 @@ import { buildCss } from "./modules/preview/buildCss";
 import { buildPreviewHtml } from "./modules/preview/buildHtml";
 import { uiModule, UiState } from "./modules/ui/previewModule";
 
-const STATE_VERSION = 1;
+const STATE_VERSION = "1";
+const VERSION_KEY = "bouncychair-version";
+const STATE_KEY = "bouncychair-state";
 
 export type AppState = {
-  version: 1;
+  version: number;
   global: GlobalOptions;
   avatar: AvatarState;
   ui: UiState;
@@ -24,6 +26,26 @@ export const store = createStore<AppState>({
     avatar: avatarModule,
     ui: uiModule,
   },
+  mutations: {
+    hydrateState(state) {
+      try {
+        const serializedVersion = window.localStorage.getItem(VERSION_KEY);
+        const serializedState = window.localStorage.getItem(STATE_KEY);
+
+        if (
+          serializedVersion === null ||
+          serializedState === null ||
+          serializedVersion !== STATE_VERSION
+        ) {
+          return;
+        }
+
+        const hydratedState = JSON.parse(serializedState);
+
+        Object.assign(state, hydratedState);
+      } catch (e) {}
+    },
+  },
   getters: {
     allAvatars: (state) => {
       return state.avatar.avatarIds.map((r) => state.avatar.avatarsById[r]);
@@ -37,6 +59,12 @@ export const store = createStore<AppState>({
       return buildPreviewHtml(state.global, getters.allAvatars);
     },
   },
+});
+
+store.subscribe((_, state) => {
+  // TODO consider using the git hash or build number?
+  window.localStorage.setItem(VERSION_KEY, STATE_VERSION);
+  window.localStorage.setItem(STATE_KEY, JSON.stringify(state));
 });
 
 // define your own `useStore` composition function
