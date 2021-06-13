@@ -21,3 +21,7 @@ label {
 h1 {
   @apply font-bold;
 }
+
+a {
+  @apply text-purple-700 hover:underline;
+}
