@@ -7,4 +7,4 @@ Bouncy Chair is a web application written with Vue 3 and Vuex intended to simpli
 # Credits
 
 - Ollie icon by [tinyaliem](https://www.twitter.com/tinyaliem)
-- Example avatars by [slimedrops](https://www.twitter.com/slimedrops)
+- Example avatars and Bouncy Chair logo by [slimedrops](https://www.twitter.com/slimedrops)
