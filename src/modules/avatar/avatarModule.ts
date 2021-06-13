@@ -37,10 +37,20 @@ export const avatarModule: Module<AvatarState, any> = {
 
       state.avatarsById[avatar.id] = avatar;
       state.avatarIds.push(avatar.id);
+
+      // reorder avatars
+      state.avatarIds.forEach((r, idx) => {
+        state.avatarsById[r].order = idx + 1;
+      });
     },
     removeAvatar(state, id: string) {
       state.avatarIds = state.avatarIds.filter((r) => r !== id);
       delete state.avatarsById[id];
+
+      // reorder avatars
+      state.avatarIds.forEach((r, idx) => {
+        state.avatarsById[r].order = idx + 1;
+      });
     },
     updateAvatar(
       state,
