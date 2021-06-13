@@ -1,3 +1,4 @@
+import { source } from "common-tags";
 import { Avatar } from "../avatar/avatarModule";
 import { GlobalOptions } from "../global/globalModule";
 
@@ -31,8 +32,7 @@ export function buildAvatarCss({
   .voice-state[data-reactid*="${discordId}"]
   .speaking {
   content: url(${speakingImageUrl});
-}
-  `;
+}`.trim();
 }
 
 export function buildGlobalCss({
@@ -142,8 +142,7 @@ body {
   margin: 0px auto;
   padding: 0;
   overflow: hidden;
-}
-  `;
+}`.trim();
 }
 
 export function buildCss(globalOptions: GlobalOptions, avatars: Avatar[] = []) {
@@ -165,6 +164,5 @@ ${globalCss}
  *
  ***********************************/
 
-${avatarCss}
-  `;
+${avatarCss}`.trim();
 }

@@ -5,11 +5,17 @@
     </div>
 
     <pre
-      class="iframeContainer text-left bg-purple-200 rounded overflow-y-scroll"
+      class="
+        iframeContainer
+        text-left
+        bg-purple-200
+        rounded
+        overflow-y-scroll
+        p-4
+      "
       v-show="showCss"
+      >{{ css }}</pre
     >
-      {{ css }}
-    </pre>
   </div>
 </template>
 
