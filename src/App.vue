@@ -44,7 +44,11 @@
         >.
       </p>
       <p class="text-center mx-auto font-bold">
-        <a href="https://www.github.com/olliepup" target="_blank">Feedback?</a>
+        <a
+          href="https://github.com/olliepup/bouncychair/issues/new"
+          target="_blank"
+          >Feedback?</a
+        >
       </p>
     </footer>
   </div>
