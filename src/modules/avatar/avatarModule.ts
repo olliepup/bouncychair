@@ -61,5 +61,12 @@ export const avatarModule: Module<AvatarState, any> = {
         ...changes,
       };
     },
+    reorderAvatars(state, nextAvatarIds: string[]) {
+      nextAvatarIds.forEach((r, idx) => {
+        state.avatarsById[r].order = idx + 1;
+      });
+
+      state.avatarIds = nextAvatarIds;
+    },
   },
 };

@@ -1,10 +1,18 @@
 <template>
   <div class="space-y-4">
-    <ul class="space-y-4">
-      <li v-for="avatarId in avatarIds" :key="avatarId">
-        <div class="width-50"><Avatar :id="avatarId" /></div>
-      </li>
-    </ul>
+    <draggable
+      tag="ul"
+      v-model="avatarIds"
+      class="space-y-4"
+      handle=".handle"
+      itemKey="getAvatarKey"
+    >
+      <template #item="{ element }">
+        <li>
+          <div class="width-50"><Avatar :id="element" /></div>
+        </li>
+      </template>
+    </draggable>
 
     <div class="mx-auto flex content-center w-max space-x-1 my-4">
       <button v-on:click="addAvatar" class="w-100 mx-auto">Add Avatar</button>
@@ -15,21 +23,32 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "../../store";
+import draggable from "vuedraggable";
+
 import Avatar from "./Avatar.vue";
 
 export default defineComponent({
   name: "Avatars",
   components: {
     Avatar,
+    draggable,
   },
   setup: () => {
     const { commit, state } = useStore();
 
-    const avatarIds = computed(() => state.avatar.avatarIds);
+    const avatarIds = computed({
+      get: () => state.avatar.avatarIds,
+      set: (avatarIds) => {
+        commit("reorderAvatars", avatarIds);
+      },
+    });
+
+    const getAvatarKey = (r: string) => r;
 
     const addAvatar = () => commit("addAvatar");
 
     return {
+      getAvatarKey,
       addAvatar,
       avatarIds,
     };

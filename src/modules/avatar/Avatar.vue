@@ -2,7 +2,12 @@
   <article
     class="text-left max-w rounded overflow-hidden shadow-lg bg-purple-200 p-4"
   >
-    <h1 class="text-xl mb-2">Avatar {{ avatar.order }}</h1>
+    <h1
+      class="text-xl mb-2 handle"
+      title="Click and drag to reorder avatars onscreen"
+    >
+      Avatar {{ avatar.order }} <span class="handleIcon">&#8693;</span>
+    </h1>
 
     <div class="grid grid-cols-1 gap-6 text-left">
       <label>
@@ -90,4 +95,16 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.handle .handleIcon {
+  display: none;
+}
+
+.handle:hover {
+  cursor: grab;
+}
+
+.handle:hover .handleIcon {
+  display: initial;
+}
+</style>

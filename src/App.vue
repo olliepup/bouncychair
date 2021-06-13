@@ -1,25 +1,27 @@
 <template>
-  <header>
-    <img class="w-96 mx-auto" src="/logo.png" />
-  </header>
+  <div class="mx-auto min-w-min">
+    <header>
+      <img class="w-96 mx-auto" src="/logo.png" />
+    </header>
 
-  <main class="mx-auto w-min space-y-4 py-4">
-    <div class="mx-auto w-min h-min">
-      <Preview />
-    </div>
+    <main class="mx-auto w-min space-y-4 py-4">
+      <div class="mx-auto w-min h-min">
+        <Preview />
+      </div>
 
-    <div class="mx-auto flex content-center w-max space-x-1 my-4">
-      <ToggleCssButton />
+      <div class="mx-auto flex content-center w-max space-x-1 my-4">
+        <ToggleCssButton />
 
-      <CopyCssToClipboardButton />
+        <CopyCssToClipboardButton />
 
-      <ToggleGlobalSettingsButton />
-    </div>
+        <ToggleGlobalSettingsButton />
+      </div>
 
-    <GlobalSettings v-show="showGlobalSettings" />
+      <GlobalSettings v-show="showGlobalSettings" />
 
-    <Avatars />
-  </main>
+      <Avatars />
+    </main>
+  </div>
 </template>
 
 <script lang="ts">
