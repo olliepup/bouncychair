@@ -11,7 +11,6 @@ const VERSION_KEY = "bouncychair-version";
 const STATE_KEY = "bouncychair-state";
 
 export type AppState = {
-  version: number;
   global: GlobalOptions;
   avatar: AvatarState;
   ui: UiState;
@@ -42,7 +41,9 @@ export const store = createStore<AppState>({
 
         const hydratedState = JSON.parse(serializedState);
 
-        Object.assign(state, hydratedState);
+        Object.assign(state.avatar, hydratedState.avatar);
+        Object.assign(state.global, hydratedState.global);
+        Object.assign(state.ui, hydratedState.ui);
       } catch (e) {}
     },
   },
