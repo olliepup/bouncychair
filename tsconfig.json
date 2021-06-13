@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // TODO remove as soon as vuedraggable fixes their declaration files
+    "skipLibCheck": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",

@@ -1,4 +1,3 @@
-import { source } from "common-tags";
 import { Avatar } from "../avatar/avatarModule";
 import { GlobalOptions } from "../global/globalModule";
 
