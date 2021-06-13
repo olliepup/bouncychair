@@ -17,13 +17,9 @@ export type AvatarState = {
 export function createAvatar(order = 1): Avatar {
   return {
     id: uuid(),
-    // discordId: "",
-    // idleImageUrl: "",
-    // speakingImageUrl: "",
-    // order,
     discordId: uuid(),
-    idleImageUrl: "https://i.imgur.com/HfjdCuo.png",
-    speakingImageUrl: "https://i.imgur.com/dSTQAfC.png",
+    idleImageUrl: "/idle.png",
+    speakingImageUrl: "/speaking.png",
     order,
   };
 }
